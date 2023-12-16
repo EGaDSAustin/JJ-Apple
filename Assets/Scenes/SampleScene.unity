@@ -417,6 +417,8 @@ MonoBehaviour:
   - {fileID: 362611179414351535, guid: 1cbc9e9febac8344894e3e9de659c756, type: 3}
   - {fileID: 362611179414351535, guid: 22f4cc105332a1d4e8434e2111a72f9b, type: 3}
   - {fileID: 362611179414351535, guid: b88417a8c9d3c5c4c8518ce290b7522a, type: 3}
+  - {fileID: 362611179414351535, guid: ec9b1465d5568ee43a827b4924e146c8, type: 3}
+  - {fileID: 362611179414351535, guid: 15b9f329b4269a2408c3bebdfda655a4, type: 3}
   SpawnPosition: {x: 15, y: 0, z: 0}
   SpawnHitbox: {fileID: 373968250}
   DestroyHitbox: {fileID: 1551088181}
