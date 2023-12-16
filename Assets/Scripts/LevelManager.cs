@@ -43,13 +43,24 @@ public class LevelManager : MonoBehaviour
     {
         if (collision.IsTouching(SpawnHitbox.GetComponent<Collider2D>()))
         {
-            SpawnSegment();
+            Debug.Log(collision.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+            if (collision.gameObject.CompareTag("EndSegment"))
+            {
+                SpawnSegment();
+            }
         }
-        else if (collision.IsTouching(DestroyHitbox.GetComponent<Collider2D>())) 
+        else if (collision.IsTouching(DestroyHitbox.GetComponent<Collider2D>()))
         {
-            GameObject segment = collision.transform.parent.gameObject;
-            SpawnedSegments.Remove(segment);
-            Destroy(segment);
+            if (collision.CompareTag("EndSegment"))
+            {
+                GameObject segment = collision.transform.parent.gameObject;
+                SpawnedSegments.Remove(segment);
+                Destroy(segment);
+            }
+            else if (collision.CompareTag("Player"))
+            {
+                Destroy(collision.gameObject);
+            }
         }
     }
 

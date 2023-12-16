@@ -101,7 +101,7 @@ public class PenguinRunner : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+        // Debug.Log(collision.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         if (collision.CompareTag("Ground"))
         {
             isGrounded = true;
@@ -111,7 +111,7 @@ public class PenguinRunner : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("Exited: " + collision.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+        // Debug.Log("Exited: " + collision.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         if (collision.CompareTag("Ground"))
         {
             isGrounded = false;
