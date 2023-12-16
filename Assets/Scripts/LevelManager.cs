@@ -43,12 +43,10 @@ public class LevelManager : MonoBehaviour
     {
         if (collision.IsTouching(SpawnHitbox.GetComponent<Collider2D>()))
         {
-            Debug.Log("Touching spawn hitbox" + " : " + Time.time);
             SpawnSegment();
         }
         else if (collision.IsTouching(DestroyHitbox.GetComponent<Collider2D>())) 
         {
-            Debug.Log("Touching destroy hitbox" + " : " + Time.time);
             GameObject segment = collision.transform.parent.gameObject;
             SpawnedSegments.Remove(segment);
             Destroy(segment);

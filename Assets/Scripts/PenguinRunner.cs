@@ -11,7 +11,10 @@ public class PenguinRunner : MonoBehaviour
     private float JumpCooldownTime = 0.25f;
 
     private Rigidbody2D rb;
+
+    [SerializeField]
     private bool isGrounded;
+
     private bool jumpInput;
     private bool onJumpCooldown;
     private IEnumerator jumpCoroutine;
@@ -51,15 +54,12 @@ public class PenguinRunner : MonoBehaviour
         {
             rb.AddForce(Vector3.up * JumpForce);
             onJumpCooldown = true;
-
-            Debug.Log("Starting jump reset");
             StartCoroutine(ResetJump(JumpCooldownTime));
         }
     }
 
     IEnumerator ResetJump(float secs) 
     {
-        Debug.Log("Jump Reset Started!");
         yield return new WaitForSecondsRealtime(secs);
         onJumpCooldown = false;
         Debug.Log("Jump Reset!");
@@ -67,13 +67,20 @@ public class PenguinRunner : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // Debug.Log(collision.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-        isGrounded = true;
+        Debug.Log(collision.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+        if (collision.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        // Debug.Log("Exited: " + collision.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-        isGrounded = false;
+        Debug.Log("Exited: " + collision.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+        if (collision.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
     }
 }
