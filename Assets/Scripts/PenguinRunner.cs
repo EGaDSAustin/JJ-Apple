@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class PenguinRunner : MonoBehaviour
 {
-
-    [SerializeField]
-    private float JumpForce = 400;
-    [SerializeField]
-    private float JumpCooldownTime = 0.25f;
+    [Header("Jump Settings")] 
+    [SerializeField] float JumpForce = 10;
+    [SerializeField] float ContinuousJumpForce = 2;
+    [SerializeField] float FallForce = 2;
+    [SerializeField] float JumpCooldownTime = 0.25f;
+    [SerializeField] float JumpTime = 1.0f;
 
     private Rigidbody2D rb;
-
-    [SerializeField]
     private bool isGrounded;
-
-    private bool jumpInput;
+    private bool jumpPressed;
+    private bool jumpHeld;
+    private bool isJumping;
     private bool onJumpCooldown;
-    private IEnumerator jumpCoroutine;
+    private Vector2 gravVector;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        jumpInput = false;
+        isGrounded = false;
+        jumpPressed = false;
+        jumpHeld = false;
+        isJumping = false;
         onJumpCooldown = false;
+        gravVector = new Vector2(0, -Physics2D.gravity.y);
     }
 
     // Update is called once per frame
@@ -33,28 +37,51 @@ public class PenguinRunner : MonoBehaviour
 
         if (Input.GetButtonDown("Jump")) 
         {
-            jumpInput = true;
+            jumpPressed = true;
+            jumpHeld = true;
+            Jump();
         }
 
+        if (Input.GetButtonUp("Jump")) 
+        {
+            jumpPressed = false;
+            jumpHeld = false;
+            isJumping = false;
+        }
     }
 
     void FixedUpdate()
     {
-        if (jumpInput) 
+        if (jumpPressed) 
         {
+            jumpPressed = false;
             Jump();
         }
 
+        if (rb.velocity.y < 0) 
+        {
+            rb.AddForce(Vector2.down * FallForce);
+        } else if (rb.velocity.y > 0) 
+        {
+            if (!jumpHeld) {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+            } else if (isJumping) 
+            {
+                rb.AddForce(Vector2.up * ContinuousJumpForce);
+            }
+        }
     }
 
     void Jump() 
     {
-        jumpInput = false;
+
         if (isGrounded && !onJumpCooldown) 
         {
-            rb.AddForce(Vector3.up * JumpForce);
+            rb.AddForce(Vector2.up * JumpForce);
             onJumpCooldown = true;
+            isJumping = true;
             StartCoroutine(ResetJump(JumpCooldownTime));
+            StartCoroutine(StopJump(JumpTime));
         }
     }
 
@@ -63,6 +90,13 @@ public class PenguinRunner : MonoBehaviour
         yield return new WaitForSecondsRealtime(secs);
         onJumpCooldown = false;
         Debug.Log("Jump Reset!");
+    }
+
+    IEnumerator StopJump(float secs)
+    {
+        yield return new WaitForSecondsRealtime(secs);
+        isJumping = false;
+        Debug.Log("Jump stopped!");
     }
 
     void OnTriggerEnter2D(Collider2D collision)
