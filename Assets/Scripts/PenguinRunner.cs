@@ -7,16 +7,21 @@ public class PenguinRunner : MonoBehaviour
 
     [SerializeField]
     private float JumpForce = 400;
+    [SerializeField]
+    private float JumpCooldownTime = 0.25f;
 
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool jumpInput;
+    private bool onJumpCooldown;
+    private IEnumerator jumpCoroutine;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         jumpInput = false;
+        onJumpCooldown = false;
     }
 
     // Update is called once per frame
@@ -26,7 +31,6 @@ public class PenguinRunner : MonoBehaviour
         if (Input.GetButtonDown("Jump")) 
         {
             jumpInput = true;
-            Debug.Log("Received jump input");
         }
 
     }
@@ -36,7 +40,6 @@ public class PenguinRunner : MonoBehaviour
         if (jumpInput) 
         {
             Jump();
-            Debug.Log("Starting jump event");
         }
 
     }
@@ -44,8 +47,22 @@ public class PenguinRunner : MonoBehaviour
     void Jump() 
     {
         jumpInput = false;
-        if (isGrounded) rb.AddForce(Vector3.up * JumpForce);
-        Debug.Log("Jump completed");
+        if (isGrounded && !onJumpCooldown) 
+        {
+            rb.AddForce(Vector3.up * JumpForce);
+            onJumpCooldown = true;
+
+            Debug.Log("Starting jump reset");
+            StartCoroutine(ResetJump(JumpCooldownTime));
+        }
+    }
+
+    IEnumerator ResetJump(float secs) 
+    {
+        Debug.Log("Jump Reset Started!");
+        yield return new WaitForSecondsRealtime(secs);
+        onJumpCooldown = false;
+        Debug.Log("Jump Reset!");
     }
 
     void OnTriggerEnter2D(Collider2D collision)
