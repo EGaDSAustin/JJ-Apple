@@ -10,9 +10,9 @@ public class PenguinRunner : MonoBehaviour
     [SerializeField] float FallForce = 2;
     [SerializeField] float JumpCooldownTime = 0.25f;
     [SerializeField] float JumpTime = 1.0f;
+    [SerializeField] Collider2D groundedHitbox;
 
     private Rigidbody2D rb;
-    private bool isGrounded;
     private bool jumpPressed;
     private bool jumpHeld;
     private bool isJumping;
@@ -23,7 +23,6 @@ public class PenguinRunner : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        isGrounded = false;
         jumpPressed = false;
         jumpHeld = false;
         isJumping = false;
@@ -75,7 +74,7 @@ public class PenguinRunner : MonoBehaviour
     void Jump() 
     {
 
-        if (isGrounded && !onJumpCooldown) 
+        if (IsGrounded() && !onJumpCooldown) 
         {
             rb.AddForce(Vector2.up * JumpForce);
             onJumpCooldown = true;
@@ -99,22 +98,17 @@ public class PenguinRunner : MonoBehaviour
         Debug.Log("Jump stopped!");
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    bool IsGrounded() 
     {
-        // Debug.Log(collision.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-        if (collision.CompareTag("Ground"))
+        ContactFilter2D filter = new ContactFilter2D();
+        List<Collider2D> results = new List<Collider2D>();
+        if (groundedHitbox.OverlapCollider(filter.NoFilter(), results) > 0) 
         {
-            isGrounded = true;
+            foreach (Collider2D c in results) 
+            {
+                if (c.CompareTag("Ground")) return true;
+            }
         }
-
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        // Debug.Log("Exited: " + collision.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-        if (collision.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
+        return false;
     }
 }

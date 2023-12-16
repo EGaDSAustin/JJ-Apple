@@ -810,6 +810,7 @@ MonoBehaviour:
   FallForce: 20
   JumpCooldownTime: 0.25
   JumpTime: 0.1
+  groundedHitbox: {fileID: 278217434}
 --- !u!1 &1385432696
 GameObject:
   m_ObjectHideFlags: 0
