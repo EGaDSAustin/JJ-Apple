@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spritesheet (1)_0
+      name: penguinrun_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 024b77a594b34114ba8637ca05d54cc8
-      internalID: -746985034
+      spriteID: 961237f3541fd594198a9dcac3c6e11b
+      internalID: 864032881
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet (1)_1
+      name: penguinrun_1
       rect:
         serializedVersion: 2
         x: 502
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86e546b8990d07640b8cafe02233f64a
-      internalID: -1263692693
+      spriteID: 6f6e6b286702a3141b6b6dba64c62d3d
+      internalID: -1517750845
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet (1)_2
+      name: penguinrun_2
       rect:
         serializedVersion: 2
         x: 0
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ebd7f73de796d34e932918e0d9b2675
-      internalID: -482110498
+      spriteID: 2bb9ddfe713f3b24eaa52af9192dd202
+      internalID: -2126588294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet (1)_3
+      name: penguinrun_3
       rect:
         serializedVersion: 2
         x: 502
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b11a5bd888ea75439a3dcd8ddf28377
-      internalID: -1044729507
+      spriteID: 4aa3bb4e0fe11ae4d8bbd77a13d704ac
+      internalID: 417058484
       vertices: []
       indices: 
       edges: []
@@ -204,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spritesheet (1)_0: -746985034
-      spritesheet (1)_1: -1263692693
-      spritesheet (1)_2: -482110498
-      spritesheet (1)_3: -1044729507
+      penguinrun_0: 864032881
+      penguinrun_1: -1517750845
+      penguinrun_2: -2126588294
+      penguinrun_3: 417058484
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
