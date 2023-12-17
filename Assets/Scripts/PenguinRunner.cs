@@ -11,6 +11,7 @@ public class PenguinRunner : MonoBehaviour
     [SerializeField] float JumpCooldownTime = 0.25f;
     [SerializeField] float JumpTime = 1.0f;
     [SerializeField] Collider2D groundedHitbox;
+    [SerializeField] AudioSource sfx;
 
     private Rigidbody2D rb;
     private bool jumpPressed;
@@ -81,6 +82,7 @@ public class PenguinRunner : MonoBehaviour
             isJumping = true;
             StartCoroutine(ResetJump(JumpCooldownTime));
             StartCoroutine(StopJump(JumpTime));
+            sfx.Play();
         }
     }
 
