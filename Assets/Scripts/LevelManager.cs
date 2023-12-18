@@ -16,14 +16,28 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private float SegmentSpeed = 0.1f;
 
+    [SerializeField]
+    private GameObject PlayerPrefab;
+    [SerializeField]
+    private GameObject Player;
+    [SerializeField]
+    private Vector3 PlayerSpawnPosition;
 
+    [SerializeField]
+    private GameObject KnifePrefab;
+
+    [SerializeField]
+    private Timer Timer;
+
+    private SpriteRenderer playerRenderer;
     private List<GameObject> SpawnedSegments = new List<GameObject>();
-
+    private List<GameObject> SpawnedKnives = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
         SpawnSegment();
+        playerRenderer = Player.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -75,8 +89,45 @@ public class LevelManager : MonoBehaviour
     // Removes segments to the left of destroy point
     void RemoveSegment(GameObject segment) 
     {
-
         Destroy(SpawnedSegments[0]);
         SpawnedSegments.RemoveAt(0);
+    }
+
+    public void SpawnKnife(Vector3 position)
+    {
+        if (Player != null)
+        {
+            GameObject knife = Instantiate(KnifePrefab, position + Vector3.right, Quaternion.identity);
+            SpawnedKnives.Add(knife);
+
+            Rigidbody2D rb = knife.GetComponentInChildren<Rigidbody2D>();
+            rb.velocity = new Vector2((Player.transform.position.x - position.x) / 2.0f, 9.81f);
+            rb.angularVelocity = -360.0f;
+        }
+    }
+
+    public void Reset()
+    {
+        foreach (GameObject segment in SpawnedSegments)
+        {
+            Destroy(segment);
+        }
+        SpawnedSegments.Clear();
+
+        foreach (GameObject knife in SpawnedKnives)
+        {
+            Destroy(knife);
+        }
+        SpawnedKnives.Clear();
+
+        Destroy(Player);
+        Player = Instantiate(PlayerPrefab, PlayerSpawnPosition, Quaternion.identity);
+
+        Timer.CancelInvoke();
+        Timer.Time = 0;
+        Timer.UpdateText();
+        Timer.Start();
+
+        SpawnSegment();
     }
 }

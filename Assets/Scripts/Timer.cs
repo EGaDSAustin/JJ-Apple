@@ -6,20 +6,27 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
+    public int Time = 0;
+
     [SerializeField]
     private TextMeshProUGUI text;
-    private int time = 0;
+    
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         Invoke("UpdateTimer", 1f);
     }
 
     void UpdateTimer()
     {
-        time++;
-        TimeSpan ts = TimeSpan.FromSeconds(time);
-        text.text = ts.ToString(@"m\:ss");
+        Time++;
+        UpdateText();
         Invoke("UpdateTimer", 1f);
+    }
+
+    public void UpdateText()
+    {
+        TimeSpan ts = TimeSpan.FromSeconds(Time);
+        text.text = ts.ToString(@"m\:ss");
     }
 }

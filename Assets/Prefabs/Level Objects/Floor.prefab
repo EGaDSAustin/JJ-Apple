@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6184194432654977828}
   - component: {fileID: 6225147580884917198}
   - component: {fileID: 6482252992933304017}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7390450542814730520}
   - component: {fileID: 4677013643835906825}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
