@@ -154,4 +154,12 @@ public class PenguinRunner : MonoBehaviour
         }
         return false;
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Spike"))
+        {
+            Die();
+        }    
+    }
 }
