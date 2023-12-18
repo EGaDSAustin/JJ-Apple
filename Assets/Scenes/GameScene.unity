@@ -491,12 +491,12 @@ MonoBehaviour:
   SpawnPosition: {x: 15, y: 0, z: 0}
   SpawnHitbox: {fileID: 373968250}
   DestroyHitbox: {fileID: 1551088181}
-  SegmentSpeed: 2
   PlayerPrefab: {fileID: 5629101769332339607, guid: 7d516c6c93fc1ce43b2d2c6217e796ef, type: 3}
   Player: {fileID: 221138159}
   PlayerSpawnPosition: {x: 0, y: -2, z: 0}
   Seal: {fileID: 558818769}
   KnifePrefab: {fileID: 3839883350123827315, guid: 9e2de96686597494993c5cc3cc0875b5, type: 3}
+  KnifeSpawnPosition: {x: -7.4, y: -0.8, z: -3}
   Timer: {fileID: 897968513}
 --- !u!4 &408326061
 Transform:

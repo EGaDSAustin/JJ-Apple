@@ -79,7 +79,7 @@ public class LevelManager : MonoBehaviour
             }
             else if (collision.CompareTag("Player"))
             {
-                Destroy(collision.gameObject);
+                Reset();
             }
         }
     }
