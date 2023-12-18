@@ -33,6 +33,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private Timer Timer;
 
+    [SerializeField]
+    private ParticleSystem Snow;
+
     private SpriteRenderer playerRenderer;
     private List<GameObject> SpawnedSegments = new List<GameObject>();
     private List<GameObject> SpawnedKnives = new List<GameObject>();
@@ -58,6 +61,8 @@ public class LevelManager : MonoBehaviour
         }
 
         SegmentSpeed = 2.0f + Timer.Time / 10.0f;
+        var snowVelocity = Snow.velocityOverLifetime;
+        snowVelocity.speedModifier = 1.0f + Timer.Time / 20.0f;
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
