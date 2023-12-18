@@ -12,6 +12,8 @@ public class PenguinRunner : MonoBehaviour
     [SerializeField] float JumpTime = 1.0f;
     [SerializeField] Collider2D groundedHitbox;
     [SerializeField] AudioSource sfx;
+    [SerializeField] float MaxMoveSpeed;
+    [SerializeField] float HorizontalAcceleration;
 
     private Rigidbody2D rb;
     private bool jumpPressed;
@@ -19,6 +21,7 @@ public class PenguinRunner : MonoBehaviour
     private bool isJumping;
     private bool onJumpCooldown;
     private Vector2 gravVector;
+    private float moveAxis;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +51,8 @@ public class PenguinRunner : MonoBehaviour
             jumpHeld = false;
             isJumping = false;
         }
+
+        moveAxis = Input.GetAxis("Horizontal");
     }
 
     void FixedUpdate()
@@ -70,6 +75,8 @@ public class PenguinRunner : MonoBehaviour
                 rb.AddForce(Vector2.up * ContinuousJumpForce);
             }
         }
+
+        rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, moveAxis * MaxMoveSpeed, Time.fixedDeltaTime * HorizontalAcceleration), rb.velocity.y);
     }
 
     void Jump() 
