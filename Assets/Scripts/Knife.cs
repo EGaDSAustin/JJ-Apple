@@ -50,7 +50,7 @@ public class Knife : MonoBehaviour
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a * 0.9f);
             yield return new WaitForSeconds(0.1f);
         }
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
     IEnumerator SpawnKnifeTrailCoroutine()

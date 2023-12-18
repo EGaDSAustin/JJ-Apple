@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    [SerializeField]
-    private float SegmentSpeed;
-
     private SpriteRenderer spriteRenderer;
     private float offset;
 
@@ -20,6 +17,6 @@ public class Parallax : MonoBehaviour
     void FixedUpdate()
     {
         spriteRenderer.material.mainTextureOffset = new Vector2(offset, 0.0f);
-        offset = (offset + SegmentSpeed * Time.fixedDeltaTime) % 1.0f;
+        offset = (offset + LevelManager.SegmentSpeed * Time.fixedDeltaTime / 2.0f) % 1.0f;
     }
 }

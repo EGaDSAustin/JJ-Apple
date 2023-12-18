@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    public static float SegmentSpeed;
 
     [SerializeField]
     private List<GameObject> SegmentPrefabs;
@@ -13,8 +14,6 @@ public class LevelManager : MonoBehaviour
     private GameObject SpawnHitbox;
     [SerializeField]
     private GameObject DestroyHitbox;
-    [SerializeField]
-    private float SegmentSpeed = 0.1f;
 
     [SerializeField]
     private GameObject PlayerPrefab;
@@ -28,6 +27,8 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField]
     private GameObject KnifePrefab;
+    [SerializeField]
+    private Vector3 KnifeSpawnPosition;
 
     [SerializeField]
     private Timer Timer;
@@ -55,6 +56,8 @@ public class LevelManager : MonoBehaviour
         {
             segment.transform.position += Vector3.left * SegmentSpeed * Time.fixedDeltaTime;
         }
+
+        SegmentSpeed = 2.0f + Timer.Time / 10.0f;
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -100,12 +103,12 @@ public class LevelManager : MonoBehaviour
     {
         if (Player != null)
         {
-            GameObject knife = Instantiate(KnifePrefab, Seal.transform.position, Quaternion.identity);
+            GameObject knife = Instantiate(KnifePrefab, KnifeSpawnPosition, Quaternion.identity);
             SpawnedKnives.Add(knife);
 
             Rigidbody2D rb = knife.GetComponentInChildren<Rigidbody2D>();
-            rb.velocity = new Vector2((Player.transform.position.x - Seal.transform.position.x) / 2.0f, 9.81f);
-            rb.angularVelocity = -360.0f;
+            rb.velocity = new Vector2((Player.transform.position.x - KnifeSpawnPosition.x) / 2.0f, 9.81f);
+            rb.angularVelocity = -480.0f;
         }
     }
 

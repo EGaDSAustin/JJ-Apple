@@ -27,7 +27,7 @@ public class KnifeTrail : MonoBehaviour
         {
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1.0f - (time - FadeDelay) / Duration);
         }
-        else if (time >= FadeDelay + Duration)
+        if (time >= FadeDelay + Duration)
         {
             Destroy(gameObject);
         }
