@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2308024804958862128}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.70710695, w: 0.70710665}
-  m_LocalPosition: {x: -0, y: -2.25, z: 0}
+  m_LocalPosition: {x: -0, y: -0.9, z: 0}
   m_LocalScale: {x: 0.1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -161,9 +161,9 @@ Transform:
   m_GameObject: {fileID: 5629101769332339607}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
-  m_LocalScale: {x: 0.34, y: 0.34, z: 0.45333335}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8574168487165928022}
   m_Father: {fileID: 0}
@@ -253,7 +253,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 4.4, y: 4.4}
+  m_Size: {x: 1.4, y: 1.8}
   m_Direction: 0
 --- !u!50 &2309734648074257218
 Rigidbody2D:
@@ -303,7 +303,7 @@ MonoBehaviour:
   sfx: {fileID: 3437971915450738967}
   MaxMoveSpeed: 8
   HorizontalAcceleration: 10
-  levelManager: {fileID: 0}
+  IsAlive: 0
 --- !u!95 &489437777573837912
 Animator:
   serializedVersion: 5
@@ -345,7 +345,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.90028214
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

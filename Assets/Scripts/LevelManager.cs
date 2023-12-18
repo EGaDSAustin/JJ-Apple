@@ -24,6 +24,9 @@ public class LevelManager : MonoBehaviour
     private Vector3 PlayerSpawnPosition;
 
     [SerializeField]
+    private GameObject Seal;
+
+    [SerializeField]
     private GameObject KnifePrefab;
 
     [SerializeField]
@@ -50,7 +53,7 @@ public class LevelManager : MonoBehaviour
     {
         foreach (GameObject segment in SpawnedSegments) 
         {
-            segment.transform.position += Vector3.left * SegmentSpeed;
+            segment.transform.position += Vector3.left * SegmentSpeed * Time.fixedDeltaTime;
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -93,15 +96,15 @@ public class LevelManager : MonoBehaviour
         SpawnedSegments.RemoveAt(0);
     }
 
-    public void SpawnKnife(Vector3 position)
+    public void SpawnKnife()
     {
         if (Player != null)
         {
-            GameObject knife = Instantiate(KnifePrefab, position + Vector3.right, Quaternion.identity);
+            GameObject knife = Instantiate(KnifePrefab, Seal.transform.position, Quaternion.identity);
             SpawnedKnives.Add(knife);
 
             Rigidbody2D rb = knife.GetComponentInChildren<Rigidbody2D>();
-            rb.velocity = new Vector2((Player.transform.position.x - position.x) / 2.0f, 9.81f);
+            rb.velocity = new Vector2((Player.transform.position.x - Seal.transform.position.x) / 2.0f, 9.81f);
             rb.angularVelocity = -360.0f;
         }
     }

@@ -21,7 +21,7 @@ public class Seal : MonoBehaviour
         knifeTime += Time.deltaTime;
         if (knifeTime >= KnifeCooldown)
         {
-            LevelManager.SpawnKnife(transform.position);
+            LevelManager.SpawnKnife();
             knifeTime = 0.0f;
         }
     }

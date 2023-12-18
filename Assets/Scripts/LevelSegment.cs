@@ -17,12 +17,4 @@ public class LevelSegment : MonoBehaviour
     {
         
     }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log(collision.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-
-        // TODO: Check for ending segment hitbox; spawn new segment or destroy this one
-
-    }
 }
